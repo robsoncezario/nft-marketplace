@@ -1,0 +1,26 @@
+[
+	{
+		"id": 1,
+		"name": "Metamask",
+		"icon": "metamask.svg",
+		"redirect": "https://metamask.io/"
+	},
+
+	{
+		"id": 2,
+		"name": "Trust Wallet",
+		"icon": "trustwallet.svg"
+	},
+
+	{
+		"id": 3,
+		"name": "WalletConnect",
+		"icon": "walletconnect.svg"
+	},
+
+	{
+		"id": 4,
+		"name": "Binance Chain",
+		"icon": "binancesc.svg"
+	}
+]
