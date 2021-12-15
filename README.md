@@ -5,10 +5,12 @@ This is a WIP and for learning purposes
 ```
 Solidity
 Web3
+ERC721
 Truffle
 Open
 React JS
 Redux
+
 ```
 
 ## Setup
