@@ -6,17 +6,18 @@ This is a WIP and for learning purposes
 Solidity
 Web3
 Truffle
+Open
 React JS
 Redux
 ```
 
 ## Setup
 
-Clone the repository and run
-
 ```
-npm install
-create a .env file and populate the enviroment variables
+Clone the repository
+Create a .env file and populate the enviroment variables
+Download and install Ganache
+run npm run install
 ```
 
 ## Run
