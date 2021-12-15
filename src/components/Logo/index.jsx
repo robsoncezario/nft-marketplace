@@ -11,7 +11,7 @@ export default function Logo({ size = 36 }) {
 	return (
 		<Row>
 			<Image src={logo} size={size} />
-			<Name size={size}>Coffe Swap</Name>
+			<Name size={size}>Coffe</Name>
 		</Row>
 	)
 }

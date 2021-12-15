@@ -54,11 +54,7 @@ contract NFT is ERC721, ERC721URIStorage {
         return "http://localhost:5000/static/";
     }
 
-		/* 
-			Learning purposes 
-		*/
-		
-		function getAllTokens(address account) 
+		function getAllTokens() 
 			public 
 			view 
 			returns (uint256[] memory) 
