@@ -42,7 +42,7 @@ export default function AccountModal({ onClose }) {
 		deactivate()
 		onClose()
 	}
-
+ 
 	return (
 		<Container>
 			<Header>

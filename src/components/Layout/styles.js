@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 const fade = keyframes`
 	from {
@@ -10,21 +10,30 @@ const fade = keyframes`
 		opacity: 1;
 		visibility: visible;
 	}
-`
+`;
 
-export const Container = styled.div` 
+export const Container = styled.div`
 	width: 100%;
-	height: 100%;
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: column;
-	min-height: 100vh;
+	overflow-y: scroll;
+	/* mobile viewport bug fix */
+	max-height: -webkit-fill-available;
+	max-height: -moz-available;
+	min-height: stretch;
 	position: relative;
-`
 
-export const Content = styled.div` 
+	@media all and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+		& {
+			min-height: 100vh;
+		}
+	}
+`;
+
+export const Content = styled.div`
 	width: 100%;
 	padding: 30px;
-	animation: ${fade} .3s linear forwards;
-`
+	animation: ${fade} 0.3s linear forwards;
+`;
