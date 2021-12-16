@@ -27,7 +27,7 @@ export default function MintButton() {
 		<>
 			<Button onClick={handleClick} className={'fal fa-arrow-to-top'} />
 			<TransitionModal open={isVisible} onClose={handleClose}>
-				<MintModal onClose={handleClose} />
+				{<MintModal key={'mint-modal-' + isVisible} onClose={handleClose} />}
 			</TransitionModal>
 		</>
 	);

@@ -1,8 +1,8 @@
-import HomeScreen from './Home/index.jsx'
+import HomeScreen from './Home/index.jsx';
 
 export default [
-  {
-    path: ['/', '/index', '/home'],
-    component: HomeScreen
-	}
-]
+	{
+		path: ['/', '/index', '/home'],
+		component: HomeScreen,
+	},
+];

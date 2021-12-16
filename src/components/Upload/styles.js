@@ -68,7 +68,7 @@ export const Button = styled.i`
 		`}
 
 	&:hover {
-		opacity: 0.8;
+		animation: ${bounce} 1.25s infinite;
 	}
 `;
 
@@ -107,7 +107,7 @@ export const Preview = styled.img`
 `;
 
 export const Name = styled.div`
-	margin-top: 20px;
+	margin-top: 15px;
 	font-size: 14px;
 	line-height: 14px;
 	color: ${({ theme }) => theme.text.colors.primary};
@@ -124,7 +124,7 @@ export const FileSize = styled.div`
 export const Label = styled.div`
 	font-size: 14px;
 	line-height: 14px;
-	margin-top: 20px;
+	margin-top: 15px;
 	color: ${({ theme, isDragActive, isDragReject }) => {
 		switch (true) {
 			case isDragReject === true:

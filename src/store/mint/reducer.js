@@ -1,7 +1,7 @@
 import { MINT_MODAL_TOGGLE_VISIBILITY } from './types';
 
 const initialState = {
-	isVisible: undefined,
+	isVisible: false,
 };
 
 export default function (state = initialState, action) {

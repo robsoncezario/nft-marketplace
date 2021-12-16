@@ -1,18 +1,18 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-export const Container = styled.div` 
+export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	background-color: ${({ theme }) => theme.colors.card};
 	border-radius: 6px;
 	padding-left: 12px;
-	padding-right: 12px; 
+	padding-right: 12px;
 	padding-top: 8px;
 	padding-bottom: 8px;
 	width: 95vw;
 	max-width: 350px;
 	box-sizing: border-box;
-` 
+`;
 
 export const Header = styled.div`
 	position: relative;
@@ -32,7 +32,7 @@ export const Header = styled.div`
 		line-height: 13px;
 		font-weight: 600;
 	}
-`
+`;
 
 export const Close = styled.i`
 	display: flex;
@@ -43,52 +43,51 @@ export const Close = styled.i`
 	border-radius: 50%;
 	font-size: 12px;
 	line-height: 12px;
-	background-color: ${({theme}) => theme.colors.background};
-	color: ${({theme}) => theme.text.colors.secondary};
+	background-color: ${({ theme }) => theme.colors.background};
+	color: ${({ theme }) => theme.text.colors.secondary};
 	cursor: pointer;
-	pointer-events: ${({isDisabled}) => isDisabled ? 'none' : 'all'};
-	opacity: ${({isDisabled}) => isDisabled ? 0.7 : 1.0};
+	pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'all')};
+	opacity: ${({ isDisabled }) => (isDisabled ? 0.7 : 1.0)};
 
 	&:hover {
 		opacity: 0.8;
 	}
-`
+`;
 
-export const Grid = styled.div` 
+export const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 10px;
-`
+`;
 
-export const Card = styled.div` 
+export const Card = styled.div`
 	width: 100%;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	cursor: pointer; 
+	cursor: pointer;
 	border-radius: 6px;
 
 	&:hover {
-		background-color: ${({theme}) => theme.colors.background};
+		background-color: ${({ theme }) => theme.colors.background};
 	}
-` 
+`;
 
-export const Icon = styled.img` 
+export const Icon = styled.img`
 	width: 40px;
 	height: 40px;
-`
+`;
 
 export const Name = styled.div`
 	margin-top: 10px;
 	font-weight: 500;
 	font-size: 14px;
 	line-height: 14px;
-`
+`;
 
-
-export const Label = styled.div` 
+export const Label = styled.div`
 	font-size: 12px;
 	font-weight: 600;
 	line-height: 12px;
@@ -97,13 +96,13 @@ export const Label = styled.div`
 	width: 100%;
 	margin-bottom: 10px;
 	margin-top: 20px;
-`
+`;
 
 export const RedirectButton = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: center; 
+	justify-content: center;
 	color: ${({ theme }) => theme.colors.card};
 	background-color: ${({ theme }) => theme.colors.button};
 	cursor: pointer;
@@ -114,8 +113,8 @@ export const RedirectButton = styled.div`
 	font-size: 13px;
 	line-height: 13px;
 	border-radius: 6px;
-	opacity: ${({isDisabled}) => isDisabled ? 0.3 : 1};
-	pointer-events: ${({isDisabled}) => isDisabled ? 'none' : 'all'};
+	opacity: ${({ isDisabled }) => (isDisabled ? 0.3 : 1)};
+	pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'all')};
 
 	& i {
 		font-size: 14px;
@@ -126,4 +125,4 @@ export const RedirectButton = styled.div`
 	&:hover {
 		opacity: 0.8;
 	}
-` 
+`;

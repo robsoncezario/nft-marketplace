@@ -19,10 +19,6 @@ export default function MintModal({ onClose }) {
 	useEffect(clearEverything, []);
 
 	const handleUpload = (fileList) => {
-		if (file) {
-			URL.revokeObjectURL(file.preview);
-		}
-
 		const lastFile = fileList[0];
 		const data = {
 			file: lastFile,
@@ -34,8 +30,6 @@ export default function MintModal({ onClose }) {
 		};
 
 		setFile(data);
-
-		console.log(data);
 	};
 
 	const handleDiscard = () => {

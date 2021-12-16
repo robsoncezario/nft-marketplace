@@ -1,13 +1,13 @@
-import { InjectedConnector } from '@web3-react/injected-connector' 
-import Chain from './chains' 
+import { InjectedConnector } from '@web3-react/injected-connector';
+import Chain from './chains';
 
 const injected = new InjectedConnector({
-  supportedChainIds: [
-		Chain.BSC, 
-		Chain.RINKEBY, 
+	supportedChainIds: [
+		Chain.BSC,
+		Chain.RINKEBY,
 		Chain.BSC_TESTNET,
-		Chain.GANACH
-	]
-})
+		Chain.GANACH,
+	],
+});
 
-export default injected 
+export default injected;
