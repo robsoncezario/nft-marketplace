@@ -8,13 +8,17 @@ export const Overlay = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  background: ${(props) =>
-    props.open ? "rgba(10, 10, 10, 0.3)" : "transparent"};
-  pointer-events: ${(props) => (props.open ? "all" : "none")};
+  background: ${({ open }) => (open ? "rgba(10, 10, 10, 0.3)" : "transparent")};
+  pointer-events: ${({ open }) => (open ? "all" : "none")};
   transition: background 0.3s;
 
-  ${(props) => {
-    switch (props.align) {
+  ${({ align }) => {
+    switch (align) {
+      case "topCenter":
+        return `
+					align-items: flex-start;
+					justify-content: center;
+				`;
       case "bottomLeft":
         return `
 					align-items: flex-end;

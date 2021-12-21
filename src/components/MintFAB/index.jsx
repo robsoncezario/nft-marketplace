@@ -3,15 +3,13 @@ import { useDispatch } from "react-redux";
 
 import { Wrapper, Button } from "./styles";
 import { MINT_MODAL_TOGGLE_VISIBILITY } from "../../store/mint/types";
+import { toggleModalVisibility } from "../../store/mint/actions";
 
 export default function MintFAB() {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch({
-      type: MINT_MODAL_TOGGLE_VISIBILITY,
-      payload: true,
-    });
+    dispatch(toggleModalVisibility(true));
   };
 
   return (

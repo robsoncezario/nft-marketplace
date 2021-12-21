@@ -1,13 +1,14 @@
 import React from "react";
-import { Row, Image, Name } from "./styles";
+import { Row, Icon, Name } from "./styles";
 
 import logo from "../../assets/images/logo.png";
 
-export default function Logo({ size = 36 }) {
+export default function Logo({ size = 36, onlyIcon = false }) {
   return (
     <Row>
-      <Image src={logo} size={size} />
-      <Name size={size}>Coffe</Name>
+      <Icon className="fad fa-coffee-togo" size={size} />
+
+      {!onlyIcon && <Name size={size}>Coffe</Name>}
     </Row>
   );
 }

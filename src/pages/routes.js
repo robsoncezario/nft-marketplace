@@ -1,8 +1,3 @@
-import HomeScreen from "./Home/index.jsx";
+import navigationRoutes from "./navigationRoutes.js";
 
-export default [
-  {
-    path: ["/", "/index", "/home"],
-    component: HomeScreen,
-  },
-];
+export default [...navigationRoutes, ...[]];

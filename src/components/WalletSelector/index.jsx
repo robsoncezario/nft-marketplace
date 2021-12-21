@@ -20,7 +20,7 @@ import getErrorMessage from "../../methods/getErrorMessage";
 import walletList from "../../constants/wallets.json";
 
 import { injected, walletConnect, binanceSC } from "../../connectors/index";
-import { WALLET_SET_CONNECTOR_ID } from "../../store/wallet/types";
+import { setWalletConnectorId } from "../../store/wallet/actions";
 
 export default function WalletSelector({ onClose }) {
   const dispatch = useDispatch();
@@ -29,10 +29,7 @@ export default function WalletSelector({ onClose }) {
 
   const selectWallet = (id) => {
     async function connectWalletAsync() {
-      dispatch({
-        type: WALLET_SET_CONNECTOR_ID,
-        payload: id,
-      });
+      dispatch(setWalletConnectorId(id));
 
       try {
         switch (id) {

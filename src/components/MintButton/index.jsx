@@ -3,29 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import MintModal from "../MintModal/index.jsx";
 import TransitionModal from "../TransitionModal/index";
 import { Button } from "./styles";
-import { MINT_MODAL_TOGGLE_VISIBILITY } from "../../store/mint/types";
+import { toggleModalVisibility } from "../../store/mint/actions.js";
 
 export default function MintButton() {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.mint.isVisible);
 
   const handleClick = () => {
-    dispatch({
-      type: MINT_MODAL_TOGGLE_VISIBILITY,
-      payload: true,
-    });
+    dispatch(toggleModalVisibility(true));
   };
 
   const handleClose = () => {
-    dispatch({
-      type: MINT_MODAL_TOGGLE_VISIBILITY,
-      payload: false,
-    });
+    dispatch(toggleModalVisibility(false));
   };
 
   return (
     <>
-      <Button onClick={handleClick} className={"fal fa-arrow-to-top"} />
+      <Button onClick={handleClick}>
+        Mint an item <i className="fas fa-arrow-to-top" />
+      </Button>
       <TransitionModal open={isVisible} onClose={handleClose}>
         {<MintModal key={"mint-modal-" + isVisible} onClose={handleClose} />}
       </TransitionModal>

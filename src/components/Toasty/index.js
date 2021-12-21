@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { TOASTY_REMOVE } from "../../store/toasty/types";
+import { removeToast } from "../../store/toasty/actions";
 
 import { Container, Icon, Description, Close } from "./styles";
 
@@ -11,13 +11,7 @@ export default function Toasty({
   duration = 5000,
 }) {
   const dispatch = useDispatch();
-  const remove = () =>
-    dispatch({
-      type: TOASTY_REMOVE,
-      payload: {
-        uuid: uuid,
-      },
-    });
+  const remove = () => dispatch(removeToast(uuid));
 
   const handleDidMount = () => {
     const timeoutId = setTimeout(remove, duration);

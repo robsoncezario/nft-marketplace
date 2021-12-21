@@ -1,19 +1,10 @@
-import { v4 as uuid } from "uuid";
 import store from "../../store/index";
-import { TOASTY_PUSH } from "../../store/toasty/types";
+import { addToast } from "../../store/toasty/actions";
 
 export default class ToastyService {
-  static push = (type, message, duration = 5000) => {
-    store.dispatch({
-      type: TOASTY_PUSH,
-      payload: {
-        uuid: uuid(),
-        type: type,
-        message: message,
-        duration: duration,
-      },
-    });
-  };
+  static push(type, message, duration = 5000) {
+    store.dispatch(addToast(message, type, duration));
+  }
 
   static info(message, duration = 5000) {
     ToastyService.push("info", message, duration);
