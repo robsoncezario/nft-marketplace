@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
-export default function Portal({ children, element = 'div' }) {
-	const [container, setContainer] = useState();
+export default function Portal({ children, element = "div" }) {
+  const [container, setContainer] = useState();
 
-	const handleUseEffect = () => {
-		const el = document.createElement(element);
-		document.body.appendChild(el);
-		setContainer(el);
+  const handleUseEffect = () => {
+    const el = document.createElement(element);
+    document.body.appendChild(el);
+    setContainer(el);
 
-		return () => {
-			document.body.removeChild(el);
-		};
-	};
+    return () => {
+      document.body.removeChild(el);
+    };
+  };
 
-	useEffect(handleUseEffect, []);
+  useEffect(handleUseEffect, []);
 
-	return container ? createPortal(children, container) : null;
+  return container ? createPortal(children, container) : null;
 }

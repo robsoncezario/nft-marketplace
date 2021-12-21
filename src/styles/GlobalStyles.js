@@ -1,11 +1,11 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
-import poppinsLight from '../assets/fonts/Poppins/Poppins-Light.ttf';
-import poppinsRegular from '../assets/fonts/Poppins/Poppins-Regular.ttf';
-import poppinsMedium from '../assets/fonts/Poppins/Poppins-Medium.ttf';
-import poppinsSemiBold from '../assets/fonts/Poppins/Poppins-SemiBold.ttf';
-import poppinsBold from '../assets/fonts/Poppins/Poppins-Bold.ttf';
-import oleoScript from '../assets/fonts/Oleo_Script/OleoScript-Regular.ttf';
+import poppinsLight from "../assets/fonts/Poppins/Poppins-Light.ttf";
+import poppinsRegular from "../assets/fonts/Poppins/Poppins-Regular.ttf";
+import poppinsMedium from "../assets/fonts/Poppins/Poppins-Medium.ttf";
+import poppinsSemiBold from "../assets/fonts/Poppins/Poppins-SemiBold.ttf";
+import poppinsBold from "../assets/fonts/Poppins/Poppins-Bold.ttf";
+import oleoScript from "../assets/fonts/Oleo_Script/OleoScript-Regular.ttf";
 
 export default createGlobalStyle`
   * {

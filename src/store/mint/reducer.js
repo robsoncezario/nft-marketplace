@@ -1,19 +1,19 @@
-import { MINT_MODAL_TOGGLE_VISIBILITY } from './types';
+import { MINT_MODAL_TOGGLE_VISIBILITY } from "./types";
 
 const initialState = {
-	isVisible: false,
+  isVisible: false,
 };
 
 export default function (state = initialState, action) {
-	switch (action.type) {
-		case MINT_MODAL_TOGGLE_VISIBILITY:
-			return {
-				...state,
-				...{
-					isVisible: action.payload,
-				},
-			};
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case MINT_MODAL_TOGGLE_VISIBILITY:
+      return {
+        ...state,
+        ...{
+          isVisible: action.payload,
+        },
+      };
+    default:
+      return state;
+  }
 }
