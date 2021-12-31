@@ -8,7 +8,7 @@ export default {
     card: "rgb(255, 255, 255)",
     button: "#363636",
     placeholder: "#efefef",
-    divider: "rgb(226, 232, 240)",
+    divider: "rgb(231, 227, 235)",
   },
 
   text: {

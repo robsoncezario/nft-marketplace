@@ -54,3 +54,113 @@ export const Close = styled.i`
     opacity: 0.8;
   }
 `;
+
+export const Input = styled.input`
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  color: ${({ theme }) => theme.text.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.background};
+  cursor: pointer;
+  margin-top: 15px;
+
+  &[type="password"] {
+    padding-right: 36px;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.text.colors.secondary};
+  }
+
+  &::selection {
+    background-color: ${({ theme }) => Color(theme.colors.primary).alpha(0.2)};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.text.colors.primary};
+    background-color: ${({ theme }) =>
+      Color(theme.colors.background).darken(0.025)};
+  }
+
+  &:hover::placeholder,
+  &:focus::placeholder {
+    color: ${({ theme }) => theme.text.colors.primary};
+  }
+`;
+
+export const TextArea = styled.textarea`
+  width: 100%;
+  outline: none;
+  resize: none;
+  border: none;
+  border-radius: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  color: ${({ theme }) => theme.text.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.background};
+  cursor: pointer;
+  margin-top: 15px;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.text.colors.secondary};
+  }
+
+  &::selection {
+    background-color: ${({ theme }) => Color(theme.colors.primary).alpha(0.2)};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.text.colors.primary};
+    background-color: ${({ theme }) =>
+      Color(theme.colors.background).darken(0.025)};
+  }
+
+  &:hover::placeholder,
+  &:focus::placeholder {
+    color: ${({ theme }) => theme.text.colors.primary};
+  }
+`;
+
+export const Button = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.button};
+  cursor: pointer;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  border-radius: 18px;
+  opacity: ${({ isDisabled }) => (isDisabled ? 0.3 : 1)};
+  pointer-events: ${({ isDisabled }) => (isDisabled ? "none" : "all")};
+  margin-top: 15px;
+
+  & i {
+    font-size: 14px;
+    line-height: 14px;
+    margin-left: 10px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;

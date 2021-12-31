@@ -17,7 +17,7 @@ export default function ConnectWallet() {
   const [openDetails, setOpenDetailsModal] = useState(false);
   const balance = useETHBalance();
 
-  const { activate, account, active } = useWeb3React();
+  const { activate, account, active, library } = useWeb3React();
 
   const handleDidMount = () => {
     injected.isAuthorized().then(async (isAuthorized) => {
@@ -31,6 +31,22 @@ export default function ConnectWallet() {
   };
 
   useEffect(handleDidMount, []);
+
+  const handleSign = () => {
+    if (account) {
+      console.log("ativou " + account);
+
+      async function signIn() {
+        library.eth.personal
+          .sign("Hello world", account, library.utils.sha3("test password!"))
+          .then(console.log);
+      }
+
+      signIn();
+    }
+  };
+
+  useEffect(handleSign, [account]);
 
   const handleClick = () => {
     setOpen(true);

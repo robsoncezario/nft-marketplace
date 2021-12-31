@@ -112,7 +112,7 @@ export const RedirectButton = styled.div`
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  border-radius: 6px;
+  border-radius: 18px;
   opacity: ${({ isDisabled }) => (isDisabled ? 0.3 : 1)};
   pointer-events: ${({ isDisabled }) => (isDisabled ? "none" : "all")};
 

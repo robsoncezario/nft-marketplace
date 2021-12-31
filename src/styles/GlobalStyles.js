@@ -69,4 +69,8 @@ export default createGlobalStyle`
     -webkit-font-smoothing: subpixel-antialiased !important;
     overflow-x: hidden;
   }
+
+	textarea {
+		font-family: ${({ theme }) => theme.text.fontFamily};	
+	}
 `;

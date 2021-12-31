@@ -7,7 +7,7 @@ import { toggleModalVisibility } from "../../store/mint/actions.js";
 
 export default function MintButton() {
   const dispatch = useDispatch();
-  const isVisible = useSelector((state) => state.mint.isVisible);
+  const isVisible = useSelector((state) => state.mint.visible);
 
   const handleClick = () => {
     dispatch(toggleModalVisibility(true));
@@ -19,9 +19,7 @@ export default function MintButton() {
 
   return (
     <>
-      <Button onClick={handleClick}>
-        Mint an item <i className="fas fa-arrow-to-top" />
-      </Button>
+      <Button onClick={handleClick}>Create</Button>
       <TransitionModal open={isVisible} onClose={handleClose}>
         {<MintModal key={"mint-modal-" + isVisible} onClose={handleClose} />}
       </TransitionModal>

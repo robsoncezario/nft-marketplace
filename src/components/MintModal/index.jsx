@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import fileSize from "filesize";
 
 import Upload from "../Upload/index.jsx";
 
-import { Container, Header, Close } from "./styles";
+import { Container, Header, Close, Button, Input, TextArea } from "./styles";
+import { requestMintToken } from "../../store/mint/actions.js";
 
 export default function MintModal({ onClose }) {
   const [file, setFile] = useState();
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
 
   const clearEverything = () => {
     return () => {
@@ -37,6 +42,20 @@ export default function MintModal({ onClose }) {
     setFile();
   };
 
+  const handleSubmit = () => {
+    dispatch(requestMintToken(file.file, name, description));
+  };
+
+  const handleNameInput = (event) => {
+    event.persist();
+    setName(event.target.value);
+  };
+
+  const handleDescriptionInput = (event) => {
+    event.persist();
+    setDescription(event.target.value);
+  };
+
   return (
     <Container>
       <Header>
@@ -45,6 +64,24 @@ export default function MintModal({ onClose }) {
       </Header>
 
       <Upload onUpload={handleUpload} file={file} onDiscard={handleDiscard} />
+
+      <Input
+        placeholder={"Name"}
+        spellCheck={false}
+        maxLength={64}
+        onInput={handleNameInput}
+        value={name}
+      />
+      <TextArea
+        placeholder="Description"
+        rows={7}
+        spellCheck={false}
+        maxLength={256}
+        onInput={handleDescriptionInput}
+        value={description}
+      ></TextArea>
+
+      <Button onClick={handleSubmit}>Mint</Button>
     </Container>
   );
 }

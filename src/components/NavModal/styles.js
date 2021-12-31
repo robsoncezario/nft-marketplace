@@ -60,8 +60,8 @@ export const Item = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  font-weight: 900;
+  font-size: 15px;
+  font-weight: ${({ isCurrent }) => (isCurrent ? "bold" : 500)};
   color: ${({ theme, isCurrent }) =>
     isCurrent ? theme.colors.primary : theme.text.colors.secondary};
   cursor: pointer;
