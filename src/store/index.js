@@ -4,11 +4,13 @@ import createSagaMiddleware from "redux-saga";
 import walletReducer from "./wallet/reducer";
 import toastyReducer from "./toasty/reducer";
 import mintReducer from "./mint/reducer";
+import authReducer from "./auth/reducer";
 
 import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
+  auth: authReducer,
   wallet: walletReducer,
   toasty: toastyReducer,
   mint: mintReducer,

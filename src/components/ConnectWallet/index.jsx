@@ -1,52 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useWeb3React } from "@web3-react/core";
-import { Blockie as Identicon } from "react-identicon-variety-pack";
 
 import WalletSelector from "../WalletSelector/index.jsx";
+import JazzIcon from "../JazzIcon/index.jsx";
 import TransitionModal from "../TransitionModal/index";
 
-import { Container, Balance, Button, Spacer } from "./styles";
-
-import { injected, walletConnect } from "../../connectors/index";
-import ethIcon from "../../assets/images/cryptos/eth.svg";
 import AccountModal from "../AccountModal/index.jsx";
 import useETHBalance from "../../hooks/useETHBalance/index.js";
 
-export default function ConnectWallet() {
+import { Container, Balance, Button, Spacer } from "./styles";
+
+export default function ConnectWallet({ desktopOnly = false }) {
   const [open, setOpen] = useState(false);
   const [openDetails, setOpenDetailsModal] = useState(false);
   const balance = useETHBalance();
 
-  const { activate, account, active, library } = useWeb3React();
-
-  const handleDidMount = () => {
-    injected.isAuthorized().then(async (isAuthorized) => {
-      if (isAuthorized) {
-        activate(injected);
-      } else {
-        walletConnect.config.qrcode = false;
-        activate(walletConnect, undefined, true);
-      }
-    });
-  };
-
-  useEffect(handleDidMount, []);
-
-  const handleSign = () => {
-    if (account) {
-      console.log("ativou " + account);
-
-      async function signIn() {
-        library.eth.personal
-          .sign("Hello world", account, library.utils.sha3("test password!"))
-          .then(console.log);
-      }
-
-      signIn();
-    }
-  };
-
-  useEffect(handleSign, [account]);
+  const { account, active } = useWeb3React();
 
   const handleClick = () => {
     setOpen(true);
@@ -66,13 +35,8 @@ export default function ConnectWallet() {
 
   return (
     <>
-      <Container connected={active}>
-        {active && (
-          <Balance>
-            <img src={ethIcon} />
-            {balance && balance} ETH
-          </Balance>
-        )}
+      <Container connected={active} desktopOnly={desktopOnly}>
+        {active && <Balance>{balance && balance} ETH</Balance>}
 
         <Button onClick={active ? showDetails : handleClick}>
           {account === undefined
@@ -83,7 +47,7 @@ export default function ConnectWallet() {
           {active && (
             <>
               <Spacer />
-              <Identicon size={24} seed={account} circle={true} />
+              <JazzIcon size={16} account={account} />
               <i
                 className={
                   openDetails ? "fas fa-chevron-up" : "fas fa-chevron-down"

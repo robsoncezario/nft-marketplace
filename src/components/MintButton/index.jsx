@@ -5,7 +5,7 @@ import TransitionModal from "../TransitionModal/index";
 import { Button } from "./styles";
 import { toggleModalVisibility } from "../../store/mint/actions.js";
 
-export default function MintButton() {
+export default function MintButton({ desktopOnly = false }) {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.mint.visible);
 
@@ -19,7 +19,9 @@ export default function MintButton() {
 
   return (
     <>
-      <Button onClick={handleClick}>Create</Button>
+      <Button onClick={handleClick} desktopOnly={desktopOnly}>
+        Create
+      </Button>
       <TransitionModal open={isVisible} onClose={handleClose}>
         {<MintModal key={"mint-modal-" + isVisible} onClose={handleClose} />}
       </TransitionModal>

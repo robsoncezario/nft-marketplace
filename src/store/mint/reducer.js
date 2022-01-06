@@ -1,4 +1,9 @@
-import { MINT_MODAL_TOGGLE_VISIBILITY, REQUEST_MINT_TOKEN } from "./types";
+import {
+  MINT_MODAL_TOGGLE_VISIBILITY,
+  REQUEST_MINT_TOKEN,
+  MINT_TOKEN_SUCCESS,
+  MINT_TOKEN_FAIL,
+} from "./types";
 
 const initialState = {
   visible: false,
@@ -23,6 +28,25 @@ export default function (state = initialState, action) {
           data: null,
           error: false,
           loading: true,
+        },
+      };
+    }
+    case MINT_TOKEN_FAIL: {
+      return {
+        ...state,
+        ...{
+          data: null,
+          error: true,
+          loading: false,
+        },
+      };
+    }
+    case MINT_TOKEN_SUCCESS: {
+      return {
+        ...state,
+        ...{
+          data: action.payload.data.collectible,
+          loading: false,
         },
       };
     }

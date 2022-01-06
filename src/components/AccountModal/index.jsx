@@ -68,12 +68,7 @@ export default function AccountModal({ onClose }) {
 
       <Label>Your address</Label>
       <InputContainer>
-        <Input
-          value={account}
-          readonly
-          spellCheck={false}
-          autoComplete={false}
-        />
+        <Input value={account} readonly spellCheck={false} />
         <CopyToClipboard text={account} onCopy={handleOnCopy}>
           <CopyButton className="fad fa-copy" />
         </CopyToClipboard>

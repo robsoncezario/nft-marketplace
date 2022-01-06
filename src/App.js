@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 
 import { Web3ReactProvider } from "@web3-react/core";
 import { Provider } from "react-redux";
@@ -13,6 +13,7 @@ import ToastyContainer from "./components/Toasty/container";
 import Routes from "./pages/index";
 
 import getLibrary from "./methods/getLibrary";
+import Web3Signature from "./components/Web3Signature/index.jsx";
 
 export default function App() {
   return (
@@ -20,11 +21,12 @@ export default function App() {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <ToastyContainer />
-          <Router>
-            <Switch>
+
+          <Web3Signature>
+            <Router>
               <Routes />
-            </Switch>
-          </Router>
+            </Router>
+          </Web3Signature>
 
           <GlobalStyles />
         </ThemeProvider>

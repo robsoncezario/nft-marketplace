@@ -22,4 +22,8 @@ export default {
       //placeholder: 'rgb(209, 213, 219)'
     },
   },
+
+  cryptos: {
+    ethereum: "#716b94",
+  },
 };

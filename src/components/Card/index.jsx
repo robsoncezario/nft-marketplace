@@ -1,5 +1,5 @@
 import React from "react";
-import { Blockie } from "react-identicon-variety-pack";
+import JazzIcon from "../JazzIcon/index.jsx";
 
 import {
   Container,
@@ -8,7 +8,7 @@ import {
   Name,
   FullRow,
   Row,
-  BlockieContainer,
+  JazzIconContainer,
   Favorite,
   Price,
   Crypto,
@@ -40,12 +40,13 @@ export default function Card({
 
       <FullRow>
         <Row>
-          <BlockieContainer>
-            <Blockie size={24} seed={creator} circle={true} />
-          </BlockieContainer>
-          <BlockieContainer style={{ marginLeft: -8 }}>
-            <Blockie size={24} seed={owner} circle={true} />
-          </BlockieContainer>
+          <JazzIconContainer>
+            <JazzIcon size={16} account={creator} />
+          </JazzIconContainer>
+
+          <JazzIconContainer style={{ marginLeft: -8 }}>
+            <JazzIcon size={16} account={owner} />
+          </JazzIconContainer>
         </Row>
 
         <Row>

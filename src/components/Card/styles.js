@@ -78,14 +78,13 @@ export const Row = styled.div`
   justify-content: center;
 `;
 
-export const BlockieContainer = styled.div`
+export const JazzIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1px solid ${({ theme }) => theme.colors.divider};
 `;
 
 export const Address = styled.div`

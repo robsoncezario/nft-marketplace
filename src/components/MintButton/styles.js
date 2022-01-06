@@ -24,7 +24,7 @@ export const Button = styled.div`
   }
 
   @media (max-width: 768px) {
-    display: none;
+    display: ${({ desktopOnly }) => (desktopOnly == true ? "none" : "flex")};
   }
 
   &:hover {

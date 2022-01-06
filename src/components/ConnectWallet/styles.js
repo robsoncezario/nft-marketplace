@@ -8,6 +8,10 @@ export const Container = styled.div`
   border-radius: 20px;
   background-color: ${({ theme, connected }) =>
     connected ? theme.text.colors.primary : "transparent"};
+
+  @media (max-width: 768px) {
+    display: ${({ desktopOnly }) => (desktopOnly == true ? "none" : "flex")};
+  }
 `;
 
 export const Balance = styled.div`
@@ -21,10 +25,14 @@ export const Balance = styled.div`
   padding-right: 10px;
   padding-left: 8px;
 
-  & img {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+  & .container {
+    width: 36px;
+    height: 36px;
+    margin-right: 4px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
@@ -38,7 +46,7 @@ export const Button = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   height: 36px;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 13px;
   line-height: 13px;
   border-radius: 20px;
@@ -48,7 +56,7 @@ export const Button = styled.div`
   & i {
     font-size: 14px;
     line-height: 14px;
-    margin-left: 10px;
+    margin-left: 8px;
   }
 
   &:hover {
@@ -57,5 +65,5 @@ export const Button = styled.div`
 `;
 
 export const Spacer = styled.div`
-  margin-left: 10px;
+  margin-left: 8px;
 `;

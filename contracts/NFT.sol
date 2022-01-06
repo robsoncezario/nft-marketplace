@@ -45,27 +45,4 @@ contract NFT is ERC721, ERC721URIStorage {
     function _baseURI() internal view override returns (string memory) {
         return "http://localhost:5000/static/";
     }
-
-    function getAllTokens() public view returns (uint256[] memory) {
-        uint256 tokenCount = 0;
-        uint256 numTokens = _tokenIds.current();
-
-        for (uint256 tokenId = 1; tokenId <= numTokens; tokenId++) {
-            if (ownerOf(tokenId) == msg.sender) {
-                tokenCount++;
-            }
-        }
-
-        uint256 index = 0;
-        uint256[] memory tokenList = new uint256[](tokenCount);
-
-        for (uint256 tokenId = 1; tokenId <= numTokens; tokenId++) {
-            if (ownerOf(tokenId) == msg.sender) {
-                tokenList[index] = tokenId;
-                index++;
-            }
-        }
-
-        return tokenList;
-    }
 }
