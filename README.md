@@ -38,9 +38,9 @@ NFT_CONTRACT_ADDRESS
 MARKETPLACE_CONTRACT_ADDRESS
 ```
 
-![Layout](https://prnt.sc/26bha3x)
-![Mobile](https://prnt.sc/26bh9jo)
-![Wallet](https://prnt.sc/26bh9qx)
-![Mint](https://prnt.sc/26bh9vy)
-![Wallet connect](https://prnt.sc/26bha0h)
+![Layout](https://i.imgur.com/G1a7PxS.png)
+![Mobile](https://i.imgur.com/nWMYjZW.png)
+![Wallet](https://i.imgur.com/SWyCJ5Q.png)
+![Mint](https://i.imgur.com/1wQYUM8.png)
+![Wallet connect](https://i.imgur.com/epY56mG.png)
 
