@@ -10,6 +10,7 @@ Truffle
 Open
 React JS
 Redux
+Lottie
 
 ```
 
