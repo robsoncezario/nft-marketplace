@@ -10,7 +10,7 @@ contract NFT is ERC721, ERC721URIStorage {
     Counters.Counter private _tokenIds;
     address private marketplaceAddress;
 
-    constructor(address _marketplaceAddress) ERC721("CollectibleNFT", "NFT") {
+    constructor(address _marketplaceAddress) ERC721("Metaverse", "NFT") {
         marketplaceAddress = _marketplaceAddress;
     }
 
@@ -19,7 +19,7 @@ contract NFT is ERC721, ERC721URIStorage {
 
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId);
-        //_mint(account, newItemId);
+
         _setTokenURI(newItemId, _tokenURI);
         setApprovalForAll(marketplaceAddress, true);
 
@@ -42,7 +42,7 @@ contract NFT is ERC721, ERC721URIStorage {
         return super.tokenURI(tokenId);
     }
 
-    function _baseURI() internal view override returns (string memory) {
-        return "http://localhost:5000/static/";
-    }
+    /*function _baseURI() internal view override returns (string memory) {
+        return "http://localhost:4000/images/";
+    } */
 }

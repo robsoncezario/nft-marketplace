@@ -10,7 +10,6 @@ import "./NFT.sol";
 contract Marketplace is ReentrancyGuard {
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
-    Counters.Counter private _saleIds;
     uint256 private fee = 0.1 ether;
 
     NFT private nftContract;
@@ -23,29 +22,12 @@ contract Marketplace is ReentrancyGuard {
         bool isForSale;
     }
     
-    struct ItemSale {
-        uint256 id;
-        uint256 tokenId;
-        address payable seller;
-        address buyer;
-        uint256 price;
-    }
-
     mapping(uint256 => Item) private _items;
-    mapping(uint256 => ItemSale) private _itemSales;
 
     event ItemForSale (
         uint indexed id,
         uint256 indexed tokenId,
         address owner,
-        uint256 price
-    );
-
-    event ItemSold (
-        uint indexed id,
-        uint256 indexed tokenId,
-        address seller,
-        address buyer,
         uint256 price
     );
 
@@ -160,30 +142,10 @@ contract Marketplace is ReentrancyGuard {
         item.owner.transfer(msg.value);
         nftContract.transferFrom(address(this), msg.sender, item.tokenId);
 
-        _saleIds.increment();
-
-        uint256 saleId = _saleIds.current();
-        _itemSales[saleId] = ItemSale(
-            saleId,
-            item.tokenId, 
-            item.owner, 
-            msg.sender, 
-            item.price
-        );
-        ItemSale memory sale = _itemSales[saleId];
-
         item.owner = payable(msg.sender);
         item.isForSale = false;
 
         _items[itemId] = item;
-
-        emit ItemSold(
-            sale.id, 
-            sale.tokenId, 
-            sale.seller, 
-            sale.buyer, 
-            sale.price 
-        );
     }
 
     function getFee() public view returns (uint256) {
@@ -215,33 +177,6 @@ contract Marketplace is ReentrancyGuard {
         }
 
         return itemList;
-    }
-
-    function getMySaleHistory() 
-        public 
-        view 
-        returns (ItemSale[] memory) 
-    {
-        uint256 itemCount = 0;
-        uint256 numItems = _saleIds.current();
-
-        for (uint itemId = 1; itemId <= numItems; itemId++) {
-            if (_itemSales[itemId].seller == msg.sender || _itemSales[itemId].buyer == msg.sender) {
-                itemCount++;
-            }
-        }
-        
-        uint256 index = 0;
-        ItemSale[] memory saleList = new ItemSale[](itemCount);
-
-        for (uint itemId = 1; itemId <= numItems; itemId++) {
-            if (_itemSales[itemId].seller == msg.sender || _itemSales[itemId].buyer == msg.sender) {
-                saleList[index] = _itemSales[itemId];
-                index++;
-            }
-        }
-
-        return saleList;
     }
 
     function getItemsForSale() 

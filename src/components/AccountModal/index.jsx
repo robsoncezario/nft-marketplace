@@ -15,7 +15,10 @@ import {
   Balance,
   Redirect,
   DisconnectButton,
+  Center,
 } from "./styles";
+
+import JazzIcon from "../JazzIcon/index.jsx";
 import getConnectorData from "../../methods/getCurrentConnector";
 import ToastyService from "../../services/ToastyService";
 import useETHBalance from "../../hooks/useETHBalance";
@@ -49,6 +52,10 @@ export default function AccountModal({ onClose }) {
         <h4>Your wallet</h4>
         <Close className="fas fa-times" onClick={onClose} />
       </Header>
+
+      <Center>
+        <JazzIcon size={64} account={account} />
+      </Center>
 
       {connectorData && (
         <>

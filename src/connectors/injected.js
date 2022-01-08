@@ -6,7 +6,7 @@ const injected = new InjectedConnector({
     Chain.BSC,
     Chain.RINKEBY,
     Chain.BSC_TESTNET,
-    Chain.GANACH,
+    Chain.GANACHE,
   ],
 });
 

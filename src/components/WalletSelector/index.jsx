@@ -51,9 +51,9 @@ export default function WalletSelector({ onClose }) {
       } catch (err) {
         const message = getErrorMessage(err);
         ToastyService.error(message);
+      } finally {
+        onClose();
       }
-
-      onClose();
     }
 
     connectWalletAsync();
@@ -87,7 +87,7 @@ export default function WalletSelector({ onClose }) {
           };
 
           return (
-            <Card key={"wallet-connector-id" + id} onClick={handleClick}>
+            <Card key={"wallet-connector-id" + id} onMouseDown={handleClick}>
               <Icon
                 src={require("../../assets/images/wallets/" + icon).default}
               />

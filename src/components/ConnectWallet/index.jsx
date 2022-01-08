@@ -9,20 +9,24 @@ import AccountModal from "../AccountModal/index.jsx";
 import useETHBalance from "../../hooks/useETHBalance/index.js";
 
 import { Container, Balance, Button, Spacer } from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { setWalletSelectorVisible } from "../../store/wallet/actions.js";
 
 export default function ConnectWallet({ desktopOnly = false }) {
-  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
   const [openDetails, setOpenDetailsModal] = useState(false);
   const balance = useETHBalance();
+  const visible = useSelector((state) => state.wallet.selector.visible);
 
   const { account, active } = useWeb3React();
 
   const handleClick = () => {
-    setOpen(true);
+    dispatch(setWalletSelectorVisible(true));
   };
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(setWalletSelectorVisible(false));
   };
 
   const showDetails = () => {
@@ -58,7 +62,7 @@ export default function ConnectWallet({ desktopOnly = false }) {
         </Button>
       </Container>
 
-      <TransitionModal open={open} onClose={handleClose}>
+      <TransitionModal open={visible} onClose={handleClose}>
         <WalletSelector onClose={handleClose} />
       </TransitionModal>
 

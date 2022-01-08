@@ -13,6 +13,7 @@ import {
   Price,
   Crypto,
   Address,
+  Description,
 } from "./styles";
 
 import ethIcon from "../../assets/images/cryptos/eth_transparent.svg";
@@ -21,6 +22,7 @@ export default function Card({
   id,
   token,
   name,
+  description,
   url,
   price,
   creator,
@@ -37,6 +39,8 @@ export default function Card({
       <FullRow>
         <Name>{name}</Name>
       </FullRow>
+
+      <Description>{description}</Description>
 
       <FullRow>
         <Row>

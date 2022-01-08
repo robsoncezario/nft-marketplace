@@ -8,6 +8,7 @@ const walletConnect = new WalletConnectConnector({
     [Chain.BSC]: process.env.RPC_URL_BSC,
     [Chain.RINKEBY]: process.env.RPC_URL_RINKEBY,
     [Chain.BSC_TESTNET]: process.env.RPC_URL_BSC_TESTNET,
+    [Chain.GANACHE]: process.env.GANACHE,
   },
   bridge: "https://bridge.walletconnect.org",
   qrcode: true,

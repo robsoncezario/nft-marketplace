@@ -55,6 +55,14 @@ export const Close = styled.i`
   }
 `;
 
+export const Center = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+`;
+
 export const Label = styled.div`
   font-size: 12px;
   font-weight: 600;
@@ -184,7 +192,7 @@ export const DisconnectButton = styled.div`
   font-weight: 500;
   font-size: 13px;
   line-height: 13px;
-  border-radius: 6px;
+  border-radius: 18px;
   opacity: ${({ isDisabled }) => (isDisabled ? 0.3 : 1)};
   pointer-events: ${({ isDisabled }) => (isDisabled ? "none" : "all")};
 

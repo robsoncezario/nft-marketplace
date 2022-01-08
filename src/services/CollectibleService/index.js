@@ -12,4 +12,8 @@ export default class CollectibleService {
       "Content-Type": "multipart/form-data",
     });
   }
+
+  static async getMetadata(id) {
+    return await baseAPI.get("/collectibles/" + id);
+  }
 }

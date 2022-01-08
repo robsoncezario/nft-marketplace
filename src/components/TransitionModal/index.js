@@ -8,23 +8,23 @@ export default function TransitionModal({
   onClose,
   children,
 }) {
-  const elRef = useRef(null);
+  const elRef = useRef();
 
   const handleClickOutside = (event) => {
-    if (elRef.current && !elRef?.current?.contains(event.target)) {
+    if (elRef.current && elRef?.current == event.target) {
       onClose();
     }
   };
 
   const bindEvents = () => {
     if (open) {
-      document.addEventListener("mousedown", handleClickOutside, true);
+      document.addEventListener("click", handleClickOutside, true);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("click", handleClickOutside, true);
     };
   };
 
@@ -32,10 +32,8 @@ export default function TransitionModal({
 
   return (
     <Portal>
-      <Overlay open={open} align={align}>
-        <Wrapper ref={elRef} open={open}>
-          {children}
-        </Wrapper>
+      <Overlay ref={elRef} open={open} align={align}>
+        <Wrapper open={open}>{children}</Wrapper>
       </Overlay>
     </Portal>
   );

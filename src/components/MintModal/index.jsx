@@ -1,19 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useWeb3React } from "@web3-react/core";
 import fileSize from "filesize";
 
 import Upload from "../Upload/index.jsx";
 
-import { Container, Header, Close, Button, Input, TextArea } from "./styles";
-import { requestMintToken } from "../../store/mint/actions.js";
+import {
+  Container,
+  Header,
+  Close,
+  Button,
+  Input,
+  TextArea,
+  FeeContainer,
+  Row,
+  Icon,
+  Price,
+} from "./styles";
+import CollectibleService from "../../services/CollectibleService/index.js";
+
+import NFT from "../../../build/contracts/NFT.json";
+import Marketplace from "../../../build/contracts/Marketplace.json";
+import ToastyService from "../../services/ToastyService/index.js";
+
+import ethIcon from "../../assets/images/cryptos/eth_transparent.svg";
 
 export default function MintModal({ onClose }) {
   const [file, setFile] = useState();
   const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const dispatch = useDispatch();
+  const [fee, setFee] = useState();
+
+  const { library, account } = useWeb3React();
 
   const clearEverything = () => {
+    async function getListingFeeAsync() {
+      const marketplaceContract = new library.eth.Contract(
+        Marketplace.abi,
+        process.env.MARKETPLACE_CONTRACT_ADDRESS
+      );
+      const wei = await marketplaceContract.methods.getFee().call();
+
+      setFee(library.utils.fromWei(wei, "ether"));
+    }
+
+    getListingFeeAsync();
+
     return () => {
       if (file) {
         URL.revokeObjectURL(file.preview);
@@ -43,7 +75,49 @@ export default function MintModal({ onClose }) {
   };
 
   const handleSubmit = () => {
-    dispatch(requestMintToken(file.file, name, description));
+    if (price == "" || parseFloat(price) == 0) {
+      ToastyService.error("Please, fill the price field");
+      return;
+    }
+
+    async function mintAsync() {
+      try {
+        const response = await CollectibleService.upload({
+          file: file.file,
+          name,
+          description,
+        });
+        const data = response.data;
+
+        const nftContract = new library.eth.Contract(
+          NFT.abi,
+          process.env.NFT_CONTRACT_ADDRESS
+        );
+
+        const transaction = await nftContract.methods
+          .mint(data.collectible.id)
+          .send({ from: account });
+        const tokenId = transaction.events.Transfer.returnValues.tokenId;
+
+        const marketplaceContract = new library.eth.Contract(
+          Marketplace.abi,
+          process.env.MARKETPLACE_CONTRACT_ADDRESS
+        );
+
+        const ethPrice = library.utils.toWei(price, "ether");
+
+        const listingPrice = await marketplaceContract.methods.getFee().call();
+        const marketTransaction = await marketplaceContract.methods
+          .create(tokenId, ethPrice)
+          .send({ from: account, value: listingPrice });
+
+        location.reload();
+      } catch (e) {
+        ToastyService.error(e.message, 1000000);
+      }
+    }
+
+    mintAsync();
   };
 
   const handleNameInput = (event) => {
@@ -54,6 +128,13 @@ export default function MintModal({ onClose }) {
   const handleDescriptionInput = (event) => {
     event.persist();
     setDescription(event.target.value);
+  };
+
+  const handlePriceInput = (event) => {
+    const value = event.target.value
+      .replace(/[^0-9.]/g, "")
+      .replace(/(\..*?)\..*/g, "$1");
+    setPrice(value);
   };
 
   return (
@@ -69,7 +150,7 @@ export default function MintModal({ onClose }) {
         placeholder={"Name"}
         spellCheck={false}
         maxLength={64}
-        onInput={handleNameInput}
+        onChange={handleNameInput}
         value={name}
       />
       <TextArea
@@ -77,9 +158,26 @@ export default function MintModal({ onClose }) {
         rows={7}
         spellCheck={false}
         maxLength={256}
-        onInput={handleDescriptionInput}
+        onChange={handleDescriptionInput}
         value={description}
       ></TextArea>
+
+      <Input
+        placeholder={"Price"}
+        spellCheck={false}
+        maxLength={64}
+        onChange={handlePriceInput}
+        value={price}
+      />
+
+      <FeeContainer>
+        <Price>Fee</Price>
+
+        <Row>
+          <Icon src={ethIcon} />
+          <Price>{fee}</Price>
+        </Row>
+      </FeeContainer>
 
       <Button onClick={handleSubmit}>Mint</Button>
     </Container>

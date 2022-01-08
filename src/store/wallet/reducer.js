@@ -1,7 +1,13 @@
-import { WALLET_SET_CONNECTOR_ID } from "./types";
+import {
+  WALLET_SET_CONNECTOR_ID,
+  WALLET_SET_SELECTOR_VISIBILITY,
+} from "./types";
 
 const initialState = {
   connectorId: undefined,
+  selector: {
+    visible: false,
+  },
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +17,18 @@ export default function (state = initialState, action) {
         ...state,
         ...{
           connectorId: action.payload,
+        },
+      };
+    case WALLET_SET_SELECTOR_VISIBILITY:
+      return {
+        ...state,
+        ...{
+          selector: {
+            ...state.selector,
+            ...{
+              visible: action.payload,
+            },
+          },
         },
       };
     default:

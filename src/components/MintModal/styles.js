@@ -135,6 +135,31 @@ export const TextArea = styled.textarea`
   }
 `;
 
+export const FeeContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Icon = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+export const Price = styled.div`
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+  margin-left: 10px;
+`;
+
 export const Button = styled.div`
   width: 100%;
   display: flex;

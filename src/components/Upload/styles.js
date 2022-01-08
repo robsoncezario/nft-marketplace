@@ -101,7 +101,6 @@ export const PreviewContainer = styled.div`
 
 export const Preview = styled.img`
   width: 150px;
-  height: 150px;
   border-radius: 6px;
   animation: ${slideUp} 1s forwards;
 `;

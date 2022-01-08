@@ -30,10 +30,6 @@ export const Balance = styled.div`
     height: 36px;
     margin-right: 4px;
   }
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 export const Button = styled.div`

@@ -62,6 +62,20 @@ export const Name = styled.div`
   line-height: 13px;
 `;
 
+export const Description = styled.div`
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 13px;
+  font-weight: 400;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: ${({ theme }) => theme.text.colors.secondary};
+`;
+
 export const FullRow = styled.div`
   width: 100%;
   display: flex;
