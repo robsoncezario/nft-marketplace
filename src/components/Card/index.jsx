@@ -9,14 +9,15 @@ import {
   FullRow,
   Row,
   JazzIconContainer,
-  Favorite,
   Price,
   Crypto,
-  Address,
+  Button,
   Description,
+  OwnerRow,
 } from "./styles";
 
 import ethIcon from "../../assets/images/cryptos/eth_transparent.svg";
+import { useHistory } from "react-router-dom";
 
 export default function Card({
   id,
@@ -29,11 +30,33 @@ export default function Card({
   owner,
   favorite,
 }) {
+  const history = useHistory();
+  const handleBuy = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+  };
+
+  const handleClick = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    history.push("/details/" + token);
+  };
+
   return (
-    <Container>
+    <Container href={"/details/" + token} onClick={handleClick}>
       <ImageContainer>
         <Image src={url} />
-        <Favorite className="fas fa-heart" favorite={favorite} />
+
+        <OwnerRow>
+          <JazzIconContainer>
+            <JazzIcon size={16} account={creator} />
+          </JazzIconContainer>
+
+          <JazzIconContainer style={{ marginLeft: -8 }}>
+            <JazzIcon size={16} account={owner} />
+          </JazzIconContainer>
+        </OwnerRow>
       </ImageContainer>
 
       <FullRow>
@@ -44,19 +67,10 @@ export default function Card({
 
       <FullRow>
         <Row>
-          <JazzIconContainer>
-            <JazzIcon size={16} account={creator} />
-          </JazzIconContainer>
-
-          <JazzIconContainer style={{ marginLeft: -8 }}>
-            <JazzIcon size={16} account={owner} />
-          </JazzIconContainer>
-        </Row>
-
-        <Row>
-          <Price>{new Intl.NumberFormat("en-US").format(price)}</Price>
           <Crypto src={ethIcon} />
+          <Price>{new Intl.NumberFormat("en-US").format(price)}</Price>
         </Row>
+        <Button onClick={handleBuy}>Buy now</Button>
       </FullRow>
     </Container>
   );

@@ -152,7 +152,7 @@ contract Marketplace is ReentrancyGuard {
         return fee;
     }
 
-    function getMyItems() 
+    function getMyItems(address owner) 
         public 
         view 
         returns (Item[] memory) 
@@ -161,7 +161,7 @@ contract Marketplace is ReentrancyGuard {
         uint256 numItems = _itemIds.current();
 
         for (uint itemId = 1; itemId <= numItems; itemId++) {
-            if (_items[itemId].owner == msg.sender) {
+            if (_items[itemId].owner == owner) {
                 itemCount++;
             }
         }
@@ -170,7 +170,7 @@ contract Marketplace is ReentrancyGuard {
         Item[] memory itemList = new Item[](itemCount);
 
         for (uint itemId = 1; itemId <= numItems; itemId++) {
-            if (_items[itemId].owner == msg.sender) {
+            if (_items[itemId].owner == owner) {
                 itemList[index] = _items[itemId];
                 index++;
             }
@@ -219,5 +219,19 @@ contract Marketplace is ReentrancyGuard {
         }
 
         return itemList;
+    }
+
+    function findByTokenId(uint256 tokenId) public view returns (Item memory) {
+        Item memory item;
+        uint256 numItems = _itemIds.current();
+
+        for (uint itemId = 1; itemId <= numItems; itemId++) {
+            if (_items[itemId].tokenId == tokenId) {
+                item = _items[itemId];
+                break;
+            }
+        }
+
+        return item;
     }
 }

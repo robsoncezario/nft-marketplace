@@ -9,13 +9,13 @@ import NFT from "../../../build/contracts/NFT.json";
 import Marketplace from "../../../build/contracts/Marketplace.json";
 import CollectibleService from "../../services/CollectibleService/index.js";
 
-export default function HomeScreen() {
-  const { library } = useWeb3React();
+export default function ShowroomScreen() {
+  const { library, account } = useWeb3React();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   const fetchItems = () => {
-    if (library && library?.eth) {
+    if (library && account) {
       async function fetchItemsAsync() {
         const marketplaceContract = new library.eth.Contract(
           Marketplace.abi,
@@ -27,7 +27,7 @@ export default function HomeScreen() {
         );
 
         const marketItems = await marketplaceContract.methods
-          .getItemsForSale()
+          .getMyItems(account)
           .call();
 
         const items = await Promise.all(

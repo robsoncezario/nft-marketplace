@@ -34,17 +34,19 @@ export default function MintModal({ onClose }) {
   const { library, account } = useWeb3React();
 
   const clearEverything = () => {
-    async function getListingFeeAsync() {
-      const marketplaceContract = new library.eth.Contract(
-        Marketplace.abi,
-        process.env.MARKETPLACE_CONTRACT_ADDRESS
-      );
-      const wei = await marketplaceContract.methods.getFee().call();
+    if (library) {
+      async function getListingFeeAsync() {
+        const marketplaceContract = new library.eth.Contract(
+          Marketplace.abi,
+          process.env.MARKETPLACE_CONTRACT_ADDRESS
+        );
+        const wei = await marketplaceContract.methods.getFee().call();
 
-      setFee(library.utils.fromWei(wei, "ether"));
+        setFee(library.utils.fromWei(wei, "ether"));
+      }
+
+      getListingFeeAsync();
     }
-
-    getListingFeeAsync();
 
     return () => {
       if (file) {
@@ -53,7 +55,7 @@ export default function MintModal({ onClose }) {
     };
   };
 
-  useEffect(clearEverything, []);
+  useEffect(clearEverything, [library]);
 
   const handleUpload = (fileList) => {
     const lastFile = fileList[0];
@@ -99,6 +101,8 @@ export default function MintModal({ onClose }) {
           .send({ from: account });
         const tokenId = transaction.events.Transfer.returnValues.tokenId;
 
+        console.log(transaction);
+
         const marketplaceContract = new library.eth.Contract(
           Marketplace.abi,
           process.env.MARKETPLACE_CONTRACT_ADDRESS
@@ -111,7 +115,7 @@ export default function MintModal({ onClose }) {
           .create(tokenId, ethPrice)
           .send({ from: account, value: listingPrice });
 
-        location.reload();
+        //location.reload();
       } catch (e) {
         ToastyService.error(e.message, 1000000);
       }

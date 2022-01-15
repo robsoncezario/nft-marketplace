@@ -1,4 +1,4 @@
-import FavoritesScreen from "./Favorites/index.jsx";
+import ShowroomScreen from "./Showroom/index.jsx";
 import HomeScreen from "./Home/index.jsx";
 import PromotedScreen from "./Promoted/index.jsx";
 
@@ -18,9 +18,9 @@ export default [
   },
 
   {
-    path: ["/favorites", "/favorite"],
-    component: FavoritesScreen,
-    label: "Favorites",
+    path: ["/my_nfts", "/showroom"],
+    component: ShowroomScreen,
+    label: "My NFTs",
   },
 
   {

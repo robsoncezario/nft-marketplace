@@ -1,23 +1,21 @@
 import styled from "styled-components";
+import Color from "color";
 
 export const Container = styled.a`
   position: relative;
   width: 250px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-radius: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 6px;
   /*border: 1px solid ${({ theme }) => theme.colors.divider}; */
   background-color: ${({ theme }) => theme.colors.card};
   cursor: pointer;
+  text-decoration: none;
 
   @media (max-width: 768px) {
     width: calc(50vw - 50px);
-  }
-
-  &:hover {
-    opacity: 0.8;
   }
 `;
 
@@ -60,6 +58,7 @@ export const Name = styled.div`
   font-size: 13px;
   font-weight: bold;
   line-height: 13px;
+  color: ${({ theme }) => theme.text.colors.primary};
 `;
 
 export const Description = styled.div`
@@ -84,6 +83,11 @@ export const FullRow = styled.div`
   margin-top: 15px;
   /*border-top: 1px solid ${({ theme }) => theme.colors.divider}; */
   /*padding-top: 10px; */
+
+  &.bottom-spacer {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
 `;
 
 export const Row = styled.div`
@@ -101,23 +105,61 @@ export const JazzIconContainer = styled.div`
   border-radius: 50%;
 `;
 
-export const Address = styled.div`
-  font-family: 500;
-  font-size: 12px;
-  line-height: 12px;
-  color: ${({ theme }) => theme.text.colors.secondary};
-  margin-left: 10px;
-`;
-
 export const Crypto = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-left: 10px;
+  height: 24px;
+  width: 24px;
 `;
 
 export const Price = styled.div`
-  font-family: 500;
+  font-family: 600;
+  font-size: 16px;
+  line-height: 16px;
+  color: ${({ theme }) => theme.text.colors.secondary};
+  margin-left: 10px;
+`;
+
+export const OwnerRow = styled.div`
+  position: absolute;
+  right: 8px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+`;
+
+export const OptionsButton = styled.i`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 16px;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.text.colors.secondary};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.text.colors.primary};
+    background-color: ${({ theme }) => Color(theme.colors.primary).alpha(0.2)};
+  }
+`;
+
+export const Button = styled.div`
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.primary};
   font-size: 12px;
   line-height: 12px;
-  color: ${({ theme }) => theme.text.colors.secondary};
+  font-weight: 600;
+  border-radius: 20px;
+  padding-left: 12px;
+  padding-right: 12px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
